@@ -1,4 +1,3 @@
-import 'package:consultmed1/detail_dokter_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -64,8 +63,8 @@ class DashboardPage extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  _buildDoctorCard(context, 'Dr. Mosia Gloria',
-                      'Sp. Bedah Umum', 'lib/assets/images/img3.png', 4),
+                  _buildDoctorCard('Dr. Mosia Gloria', 'Sp. Bedah Umum',
+                      'lib/assets/images/img3.png', 4),
                   _buildDoctorCard('Dr. Margret Dini', 'Sp. Bedah Plastik',
                       'lib/assets/images/img4.png', 5),
                 ],
@@ -118,57 +117,40 @@ class DashboardPage extends StatelessWidget {
 
   Widget _buildDoctorCard(
       String name, String specialty, String imagePath, int rating) {
-    return GestureDetector(
-      onTap: () => {
-        Navigator.push(
-          context as BuildContext,
-          MaterialPageRoute(
-              builder: (context) => DetailDokterPage(
-                    name: name,
-                    specialty: specialty,
-                    imagePath: imagePath,
-                    rating: rating,
-                    patientCount: 10,
-                    experienceYears: 3,
-                    about: "nothing",
-                  )),
-        )
-      },
-      child: Container(
-        width: 180, // Lebar card disesuaikan dengan kebutuhan
-        child: Card(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: Image.asset(
-                  imagePath, // Ganti dengan imagePath yang sesuai
-                  fit: BoxFit.cover,
-                ),
+    return Container(
+      width: 180, // Lebar card disesuaikan dengan kebutuhan
+      child: Card(
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: Image.asset(
+                imagePath, // Ganti dengan imagePath yang sesuai
+                fit: BoxFit.cover,
               ),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Text(name, style: TextStyle(fontWeight: FontWeight.bold)),
-                    Text(specialty),
-                    RatingBar.builder(
-                      initialRating: rating.toDouble(),
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemSize: 20.0,
-                      itemBuilder: (context, _) =>
-                          Icon(Icons.star, color: Colors.amber),
-                      onRatingUpdate: (rating) {
-                        print(rating);
-                      },
-                    ),
-                  ],
-                ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text(name, style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text(specialty),
+                  RatingBar.builder(
+                    initialRating: rating.toDouble(),
+                    minRating: 1,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    itemSize: 20.0,
+                    itemBuilder: (context, _) =>
+                        Icon(Icons.star, color: Colors.amber),
+                    onRatingUpdate: (rating) {
+                      print(rating);
+                    },
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

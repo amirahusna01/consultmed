@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class DetailDokterPage extends StatelessWidget {
   // Informasi ini sebaiknya berasal dari objek Dokter atau parameter yang dilewatkan
