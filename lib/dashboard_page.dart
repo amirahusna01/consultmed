@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:consultmed1/detail_dokter_page.dart';
 
 class DashboardPage extends StatelessWidget {
   @override
@@ -63,10 +64,10 @@ class DashboardPage extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  _buildDoctorCard('Dr. Mosia Gloria', 'Sp. Bedah Umum',
-                      'lib/assets/images/img3.png', 4),
-                  _buildDoctorCard('Dr. Margret Dini', 'Sp. Bedah Plastik',
-                      'lib/assets/images/img4.png', 5),
+                  _buildDoctorCard(context, 'Dr. Mosia Gloria',
+                      'Sp. Bedah Umum', 'lib/assets/images/img3.png', 4),
+                  _buildDoctorCard(context, 'Dr. Margret Dini',
+                      'Sp. Bedah Plastik', 'lib/assets/images/img4.png', 5),
                 ],
               ),
             ),
@@ -115,8 +116,8 @@ class DashboardPage extends StatelessWidget {
     );
   }
 
-  Widget _buildDoctorCard(
-      String name, String specialty, String imagePath, int rating) {
+  Widget _buildDoctorCard(BuildContext context, String name, String specialty,
+      String imagePath, int rating) {
     return Container(
       width: 180, // Lebar card disesuaikan dengan kebutuhan
       child: Card(
@@ -146,6 +147,32 @@ class DashboardPage extends StatelessWidget {
                     onRatingUpdate: (rating) {
                       print(rating);
                     },
+                  ),
+                  SizedBox(height: 8.0),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DetailDokterPage(
+                                  name: name,
+                                  specialty: specialty,
+                                  imagePath: imagePath,
+                                  rating: rating,
+                                  patientCount: 5,
+                                  experienceYears: 4,
+                                  about: "nothing",
+                                )),
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.arrow_forward),
+                        SizedBox(width: 8.0),
+                        Text('See Details'),
+                      ],
+                    ),
                   ),
                 ],
               ),
